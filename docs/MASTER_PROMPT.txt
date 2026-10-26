@@ -1,0 +1,857 @@
+# MASTER PROMPT: BUILD HYPERNUMBER SINGULARITY FROM SCRATCH
+
+## 1. PROJECT OVERVIEW
+
+Act as a senior Android application architect, full-stack developer, JavaScript performance engineer, mathematical algorithm developer, UI/UX engineer, database engineer, and Android build specialist.
+
+Build a complete, production-quality Android application named:
+
+**HyperNumber SINGULARITY**
+
+The new application should reproduce the functionality and visual design of the supplied reference application:
+
+**Reference application:** HyperNumber v12.0 SINGULARITY 3 QUADRILLION SPEED.
+
+I will provide the original APK as a reference artifact.
+
+Your task is to create a NEW application project from scratch, using the original APK to understand its appearance, controls, behavior, and functionality.
+
+Do not modify or patch the original APK.
+
+Do not merely extract the original APK and rename it.
+
+Create a maintainable Android application project with its own source code, build configuration, and installable APK.
+
+### The single defining difference
+
+The new application must NOT have a rolling live preview.
+
+The application must never continuously display newly generated number entries in a rolling list, scrolling text area, or continuously updated preview panel.
+
+Do not implement this feature at all.
+
+All other functionality should be reproduced from the reference application wherever it can be reliably established through inspection and testing.
+
+Do not invent undocumented features or claim to reproduce behavior that cannot be determined from the reference APK.
+
+---
+
+# 2. FIRST TASK: ANALYZE THE REFERENCE APPLICATION
+
+Before writing application code, inspect the supplied original APK.
+
+Extract and analyze its resources and architecture using appropriate Android development tools.
+
+Determine:
+
+- Original application package name.
+- Main screen structure.
+- Visual design and color palette.
+- Typography and font sizes.
+- Button labels and behavior.
+- Generation settings.
+- Number-generation algorithm.
+- Generation-count controls.
+- Start, stop, pause, resume, and burst functionality, if present.
+- Generation-speed calculations.
+- ETA calculations.
+- Elapsed-time calculations.
+- Progress indicators.
+- Completed-count statistics.
+- Data persistence.
+- Checkpoint and recovery behavior.
+- History and export functionality, if present.
+- Existing settings.
+- Supported mathematical or symbolic operations.
+- Other features visible in the original application.
+
+Inspect bundled HTML, CSS, JavaScript, native Android code, and configuration files when available.
+
+Use screenshots and runtime testing to understand the original GUI whenever possible.
+
+Create a feature inventory before beginning implementation.
+
+For each feature, document:
+
+1. Its appearance in the original app.
+2. Its expected behavior.
+3. Its dependencies.
+4. How the new application will reproduce it.
+5. How it will be tested.
+
+If a feature cannot be established from the APK, mark it as unknown rather than guessing.
+
+---
+
+# 3. CORE DESIGN REQUIREMENTS
+
+The new application must preserve the original application's identity.
+
+Use the reference APK as the visual source of truth.
+
+Do not create a generic number-generator interface.
+
+Do not redesign the application using a new visual style.
+
+Do not simplify the original interface.
+
+Do not remove existing controls simply because they seem unnecessary.
+
+Preserve the original layout as closely as possible, including:
+
+- Application title and branding.
+- Main screen layout.
+- Background colors.
+- Text colors.
+- Typography.
+- Button positions.
+- Button dimensions.
+- Button shapes.
+- Borders and shadows.
+- Cards and panels.
+- Input boxes.
+- Progress indicators.
+- Status indicators.
+- Spacing and margins.
+- Icons and visual elements.
+- Existing navigation.
+- Existing settings.
+- Existing screen transitions.
+
+Use the original assets where legally and technically appropriate.
+
+If exact assets cannot be recovered, recreate their appearance as faithfully as possible.
+
+Do not introduce a new dashboard or unrelated design elements.
+
+### Critical interface restriction
+
+The new app must not contain a rolling live preview.
+
+Do not reserve a permanent preview panel in the layout.
+
+Do not display generated numbers in a continuously scrolling area.
+
+Do not automatically append each newly generated value to the interface.
+
+Do not implement an invisible rolling list that continues consuming memory.
+
+The interface should retain the original application's other statistics and controls.
+
+---
+
+# 4. NUMBER-GENERATION ENGINE
+
+Implement the generation engine based on the algorithm established through analysis of the reference APK.
+
+Do not substitute an unrelated mathematical algorithm.
+
+Do not approximate the original sequence if the actual algorithm can be recovered.
+
+If the original algorithm cannot be recovered completely, clearly document the missing information and obtain clarification before claiming equivalence.
+
+### Requirements
+
+- Preserve the original sequence-generation rules.
+- Preserve the original ordering of generated values.
+- Preserve the original numerical representation.
+- Preserve supported mathematical operations.
+- Preserve original count semantics.
+- Support the generation-count ranges established by the reference application.
+- Avoid silently truncating values.
+- Avoid introducing duplicate values unless the original algorithm permits them.
+- Ensure generated values are processed correctly.
+- Ensure stopping and resuming do not corrupt the sequence.
+
+Do not use JavaScript's ordinary `Number` type for arbitrary-precision integer values if the supported range exceeds its exact integer precision.
+
+Choose an appropriate numerical representation based on the original algorithm.
+
+Potential approaches include BigInt, arbitrary-precision libraries, or a native numerical implementation, depending on the requirements.
+
+Do not convert large integers to floating-point values if that would change their exact value.
+
+Use the original algorithm's actual numerical rules rather than assuming that all generated values are integers.
+
+---
+
+# 5. GENERATION CONTROLS
+
+Reproduce all controls found in the reference application.
+
+This may include:
+
+- START.
+- STOP.
+- PAUSE.
+- RESUME.
+- BURST.
+- Automatic generation.
+- Custom generation-count input.
+- Existing generation settings.
+
+Only implement controls confirmed to exist in the original application or explicitly required by its documented behavior.
+
+### START
+
+When the user presses START:
+
+1. Validate the selected generation settings.
+2. Initialize or resume the appropriate generation task.
+3. Begin generation.
+4. Update statistics.
+5. Update progress.
+6. Perform required persistence operations.
+7. Keep the interface responsive.
+
+Do not display a rolling live preview.
+
+### PAUSE
+
+If the original application supports pausing, pause the generation process safely.
+
+Preserve the current generation state.
+
+Prevent additional generation work after the pause operation has taken effect.
+
+Do not discard completed work.
+
+### RESUME
+
+Resume from the correct generation position.
+
+Do not restart the sequence unless that is the original behavior.
+
+Do not regenerate already completed entries.
+
+### STOP
+
+Stop the generation task safely.
+
+Ensure that required data is saved according to the original persistence rules.
+
+Update the application status and statistics correctly.
+
+### BURST
+
+If the original application contains burst functionality, reproduce its actual behavior.
+
+Do not invent a different burst algorithm or modify the generation algorithm.
+
+### Custom generation counts
+
+Preserve the original input format, supported ranges, and validation rules.
+
+Handle invalid input gracefully.
+
+Do not silently change the requested generation count.
+
+---
+
+# 6. GENERATION SPEED AND STATISTICS
+
+Reproduce the statistics and reporting behavior found in the reference application.
+
+Preserve applicable elements such as:
+
+- Generation speed.
+- Generated count.
+- Completed count.
+- ETA.
+- Elapsed time.
+- Progress percentage.
+- Progress bar.
+- Current task status.
+- Other original statistics.
+
+The rolling live preview must be completely absent, but the statistics must remain operational.
+
+### Generation-speed calculations
+
+Measure actual generation progress over time.
+
+Use a consistent time source for elapsed-time measurements.
+
+Preserve the original units and reporting format wherever they can be established.
+
+Do not hardcode a generation speed.
+
+Do not multiply the measured rate by an arbitrary factor.
+
+Do not fabricate performance statistics.
+
+Do not report theoretical throughput as actual throughput.
+
+### ETA
+
+Calculate ETA using the remaining work and the measured processing rate, following the original application's established logic where possible.
+
+Handle zero or unstable generation rates appropriately.
+
+Display an indeterminate ETA when a reliable estimate cannot be calculated.
+
+### Elapsed time
+
+Track elapsed time accurately across pauses and resumes.
+
+Follow the reference application's behavior regarding paused time.
+
+Do not allow background UI updates to make the reported time incorrect.
+
+### Statistics without preview
+
+The generation engine must publish the minimum information necessary to update the statistics.
+
+For example, the application may track:
+
+- Total generated count.
+- Completed batches.
+- Generation start time.
+- Elapsed time.
+- Current processing rate.
+- Total requested count.
+- Current progress.
+
+Do not send every generated value to the UI merely to update a counter.
+
+The interface should receive aggregated progress information rather than a stream of individual generated entries.
+
+---
+
+# 7. NO ROLLING LIVE PREVIEW: ARCHITECTURAL REQUIREMENTS
+
+The absence of the rolling preview must be enforced at the application architecture level.
+
+Do not implement the preview and hide it with CSS.
+
+Do not create a hidden list of generated values.
+
+Do not maintain an unnecessary array of recent entries solely for display.
+
+Do not repeatedly format individual generated values for display.
+
+Do not create one UI update for every generated value.
+
+Do not introduce a scrolling text area.
+
+Do not implement automatic scrolling.
+
+Do not implement a preview refresh timer.
+
+Do not implement preview-only state management.
+
+Do not keep a preview buffer that grows with the number of generated entries.
+
+### Required processing architecture
+
+Use a separation between:
+
+1. Generation logic.
+2. Progress and statistics reporting.
+3. Data persistence.
+4. User interface.
+
+The generation engine should process values independently of the rendering layer.
+
+The UI should receive aggregated progress information at a controlled rate.
+
+For example, progress updates could be emitted periodically or at completed batch boundaries, depending on the original application's needs.
+
+The update interval must not interfere with the generation engine or change the meaning of the reported statistics.
+
+The exact interval should be chosen through performance testing rather than assumed to be optimal.
+
+### Generated-data handling
+
+Generated values must be passed to storage or output processing through the appropriate existing mechanism.
+
+Do not retain every generated value in RAM unless the application's actual requirements necessitate it.
+
+If generated values must be saved, process them through bounded batches.
+
+Do not lose values at batch boundaries.
+
+Do not introduce duplicate values when flushing batches.
+
+Do not confuse statistics with stored generation records.
+
+The removal of the preview must not prevent the application from generating, saving, exporting, or recovering its data.
+
+---
+
+# 8. PERFORMANCE AND LARGE WORKLOADS
+
+The application must remain responsive during long generation tasks.
+
+Analyze the original application's performance characteristics before selecting the implementation.
+
+Do not promise a particular generation rate without measurement.
+
+Do not advertise a theoretical speed as a guaranteed actual speed.
+
+### Performance requirements
+
+- Avoid unnecessary UI rendering.
+- Avoid unnecessary object allocation.
+- Avoid unnecessary string construction.
+- Avoid retaining unbounded generated-value arrays.
+- Avoid blocking the main UI thread.
+- Avoid repeated serialization of the entire generation history.
+- Avoid excessive progress events.
+- Avoid unnecessary database writes.
+- Avoid redundant calculations.
+- Use efficient batching where appropriate.
+- Preserve numerical correctness.
+- Preserve existing persistence guarantees.
+
+Use background execution for computationally expensive generation work.
+
+Choose appropriate concurrency based on the actual algorithm and platform constraints.
+
+Do not automatically create more workers than the device can use effectively.
+
+Do not assume that adding CPU threads always increases throughput.
+
+If multiple workers are used, preserve sequence ordering and deterministic behavior where required by the original algorithm.
+
+### Memory management
+
+Memory consumption must not grow merely because generation continues for a long time.
+
+Use bounded buffers where appropriate.
+
+Do not retain generated values solely for preview purposes.
+
+Test sustained generation to identify memory leaks.
+
+Test whether repeated pause/resume operations cause memory growth.
+
+Test whether repeated generation sessions leak resources.
+
+### Performance reporting
+
+Measure:
+
+- Actual generated values per second.
+- CPU utilization.
+- Memory consumption.
+- UI responsiveness.
+- Database activity.
+- Checkpoint overhead.
+- Behavior during long sessions.
+
+Compare the new app with the reference application where practical.
+
+Report actual results without inventing numbers.
+
+---
+
+# 9. STORAGE, AUTOSAVE, AND CHECKPOINTS
+
+Inspect the reference APK to identify its real storage architecture.
+
+Reproduce its existing persistence behavior as closely as possible.
+
+Do not assume a particular database is used.
+
+Determine whether the original application uses a database, browser storage, native files, or another persistence mechanism.
+
+Preserve the original behavior for:
+
+- Generated data.
+- Application settings.
+- Session information.
+- Checkpoints.
+- Recovery.
+- History.
+- Import and export.
+- Existing output formats.
+
+If the original application supports automatic checkpointing, implement equivalent checkpointing.
+
+If the original application saves data when stopped or paused, preserve that behavior.
+
+If the original application supports recovery after an interruption, reproduce it.
+
+Do not disable autosave simply to improve performance.
+
+Do not silently lose generated data when the user stops generation.
+
+### Checkpoint integrity
+
+A checkpoint should contain the minimum information required to recover the task correctly.
+
+Depending on the original algorithm, this may include:
+
+- Current generation position.
+- Relevant algorithm state.
+- Completed count.
+- Generation settings.
+- Persistence metadata.
+- Any required sequence state.
+
+Do not store redundant preview information.
+
+Write checkpoints safely so that an interrupted write does not corrupt the only valid checkpoint.
+
+Test recovery after an interrupted session.
+
+Do not change the original checkpoint interval without a demonstrated requirement.
+
+---
+
+# 10. TECHNOLOGY STACK
+
+Select the implementation stack based on the reference application's requirements and the development environment.
+
+The final product must be a genuine Android application packaged as an installable APK.
+
+A web-based interface packaged with Capacitor may be suitable if it accurately reproduces the original application's architecture.
+
+A native Android interface may be preferable if the original behavior requires native facilities.
+
+Do not select a framework merely because it is familiar.
+
+Explain the chosen architecture and justify the choice.
+
+### If using Capacitor
+
+- Use a maintained compatible Capacitor version.
+- Preserve required Android plugin functionality.
+- Implement the interface using the selected web framework.
+- Keep generation work off the main UI thread where practical.
+- Use appropriate worker or native execution mechanisms.
+- Preserve local data storage.
+- Ensure Android lifecycle handling is correct.
+- Verify that the packaged application launches offline if the original supports offline operation.
+
+### If using native Android
+
+- Use an appropriate Android application architecture.
+- Separate the UI from generation logic.
+- Use background execution appropriate to the workload.
+- Preserve Android lifecycle behavior.
+- Implement persistent storage safely.
+- Avoid unnecessary main-thread computation.
+- Preserve the reference application's appearance.
+
+Do not migrate to a different technology without explaining why it is necessary.
+
+---
+
+# 11. APPLICATION CONFIGURATION
+
+Create a complete Android project with all necessary source files and build configuration.
+
+Include:
+
+- Android manifest.
+- Application entry point.
+- Main interface.
+- Generation engine.
+- Statistics calculations.
+- Persistence layer.
+- Checkpoint system, if applicable.
+- Settings handling.
+- Build configuration.
+- Required dependencies.
+- Application icons and assets.
+- Installation instructions.
+
+Preserve the original package identity where appropriate and technically possible.
+
+If the original package name can be established, use it unless a new package name is necessary.
+
+If a new package name is used, document it.
+
+Use a clear versioning strategy for the new application.
+
+Do not falsely claim that a newly built application is signed with the original signing certificate.
+
+Ensure that the final APK is signed and installable.
+
+---
+
+# 12. GUI RECONSTRUCTION AND COMPARISON
+
+Use the original APK as the visual reference.
+
+Capture screenshots of all accessible original screens.
+
+Reconstruct the layout using the original measurements, colors, typography, and assets wherever possible.
+
+Do not guess when the information can be extracted.
+
+Compare the new application's screenshots with the original application's screenshots.
+
+The intended visual difference should be limited to the removal of the rolling live preview and the minimum necessary layout adjustment.
+
+Check:
+
+- Main screen.
+- Generation settings.
+- Active generation state.
+- Paused state.
+- Completed state.
+- Error state.
+- Existing history or export screens.
+- Other screens present in the reference application.
+
+Do not introduce an entirely new interface.
+
+Do not remove unrelated settings or panels.
+
+If the original APK contains a screen that cannot be inspected, document the limitation.
+
+---
+
+# 13. TESTING REQUIREMENTS
+
+Testing is mandatory.
+
+Do not deliver an untested project while claiming it is production-ready.
+
+### Functional tests
+
+Test:
+
+1. Fresh installation.
+2. Application startup.
+3. Configuration of generation settings.
+4. Starting generation.
+5. Updating generation statistics.
+6. Pausing generation.
+7. Resuming generation.
+8. Stopping generation.
+9. Burst mode, if supported.
+10. Automatic generation, if supported.
+11. Small generation tasks.
+12. Medium generation tasks.
+13. Large generation tasks.
+14. Task completion.
+15. Checkpoint creation.
+16. Recovery after interruption.
+17. Application restart.
+18. Existing import/export features.
+19. Existing settings persistence.
+20. Repeated generation sessions.
+
+Only test controls and features supported by the reference application.
+
+### Preview-removal tests
+
+Verify that:
+
+- No rolling preview is visible.
+- No preview list is generated.
+- No hidden preview buffer accumulates entries.
+- No automatic scrolling occurs.
+- No preview-only timer continues running.
+- No preview-only rendering operations occur.
+- Generation continues without preview updates.
+- Statistics continue updating.
+- Storage remains functional.
+
+### Numerical tests
+
+For identical deterministic inputs, compare the generated output with the reference application.
+
+Verify that:
+
+- The sequence matches.
+- The ordering matches.
+- The generated count matches.
+- Numerical values remain exact.
+- No unexpected duplicates or omissions occur.
+- Pause/resume does not corrupt the sequence.
+
+If the original algorithm cannot be established, explicitly identify which equivalence tests cannot be performed.
+
+### Stability tests
+
+Inspect runtime logs for:
+
+- Crashes.
+- Memory leaks.
+- JavaScript exceptions.
+- Database errors.
+- Invalid state transitions.
+- Missing resources.
+- Android lifecycle failures.
+- Plugin errors.
+
+Test long-running generation and repeated pause/resume cycles.
+
+Do not claim that a test passed unless it was actually performed.
+
+---
+
+# 14. REQUIRED DELIVERABLES
+
+Provide the following:
+
+### Deliverable A: Complete source project
+
+Include all source files and configuration needed to build the application.
+
+The project must not depend on the original APK being present at runtime.
+
+### Deliverable B: Installable Android APK
+
+Filename:
+
+HyperNumber_SINGULARITY_No_Rolling_Preview.apk
+
+The APK must:
+
+- Be correctly packaged.
+- Be signed.
+- Install on the tested Android environment.
+- Launch successfully.
+- Contain the reconstructed GUI.
+- Support the implemented generation features.
+- Have no rolling live preview.
+
+### Deliverable C: Build instructions
+
+Provide exact commands for building the application.
+
+Include required software versions and environment configuration.
+
+If using Windows, provide PowerShell-compatible commands.
+
+### Deliverable D: Technical report
+
+Document:
+
+- The reference application's architecture.
+- The recovered generation algorithm.
+- The reconstructed features.
+- The selected technology stack.
+- The storage design.
+- The preview-free architecture.
+- The test results.
+- Known limitations.
+- APK signing details.
+
+### Deliverable E: Test report
+
+Include the tests performed and their actual results.
+
+Separate successful tests from untested functionality.
+
+### Deliverable F: Performance report
+
+Provide measured throughput and memory results where possible.
+
+Do not invent benchmark numbers.
+
+---
+
+# 15. DEVELOPMENT WORKFLOW
+
+Follow this workflow in order.
+
+## Stage 1: Inspect
+
+Analyze the reference APK.
+
+Identify its architecture, GUI, algorithm, controls, statistics, and persistence mechanisms.
+
+## Stage 2: Document
+
+Create a feature inventory and implementation plan.
+
+Identify unknown behavior and technical limitations.
+
+## Stage 3: Design
+
+Define the new application's architecture.
+
+Ensure the rolling preview is excluded from the design.
+
+## Stage 4: Implement
+
+Build the application from scratch.
+
+Reconstruct the GUI and implement the established features.
+
+## Stage 5: Integrate
+
+Connect the generation engine, statistics, storage, and controls.
+
+Ensure that the UI receives only the updates it needs.
+
+## Stage 6: Test
+
+Run functional, numerical, persistence, visual, and stability tests.
+
+Compare the results against the reference application.
+
+## Stage 7: Optimize
+
+Remove unnecessary overhead without changing generation semantics.
+
+Use measurements to identify actual bottlenecks.
+
+Do not make unsupported performance claims.
+
+## Stage 8: Package
+
+Build and sign the Android APK.
+
+Verify the package structure and installation.
+
+## Stage 9: Deliver
+
+Provide the source project, APK, build instructions, and test report.
+
+Do not stop after generating a mockup, HTML page, or partial source code.
+
+The goal is a working Android application.
+
+---
+
+# 16. FINAL ACCEPTANCE CRITERIA
+
+The application is acceptable when:
+
+1. It is a newly created Android project.
+2. It is based on a comprehensive analysis of the reference APK.
+3. Its GUI closely matches the original.
+4. The rolling live preview is absent by design.
+5. No unnecessary preview buffer is maintained.
+6. The generation engine follows the original algorithm where recoverable.
+7. All established original controls work.
+8. Generation statistics remain accurate.
+9. Storage and checkpoint behavior are preserved where established.
+10. Existing supported features are reconstructed.
+11. Large generation tasks are tested.
+12. Numerical correctness is verified wherever possible.
+13. The application launches successfully on the tested Android environment.
+14. The final APK is signed and installable.
+15. The source project is provided.
+16. Test results are reported honestly.
+17. No unrelated redesign or feature removal has occurred.
+
+# FINAL INSTRUCTION
+
+Build a new HyperNumber Android application based on the supplied reference APK.
+
+Reproduce the original GUI, generation capabilities, controls, statistics, storage, checkpointing, and other established functionality as faithfully as possible.
+
+The rolling live preview must never be implemented.
+
+Do not hide it, simulate its absence, or retain a hidden rolling list.
+
+Do not replace it with another continuously updating list of generated values.
+
+The generation engine must operate independently of the UI rendering layer.
+
+Preserve numerical correctness and existing functionality.
+
+Do not fabricate unknown features, benchmark results, or test results.
+
+Deliver a complete source project and a signed, installable Android APK.
+
+The intended result is a faithful new HyperNumber application whose only deliberate functional difference from the reference is the complete absence of the rolling live preview.
